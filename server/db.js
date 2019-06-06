@@ -32,5 +32,22 @@ module.exports.getOne = (id, callback) => {
   });
 }
 
+module.exports.addDescription = (description, callback) => {
+  connect.db.collection('descriptions', (err,collection) => {
+    if (err) {
+      console.log('there is an error', err);
+    } else {
+      collection.insert(description, (err,result) => {
+        if (err) {
+          callback(err);
+        } else {
+          console.log("result from insertion", result);
+          callback(null,result);
+        }
+      })
+    }
+  })
+}
+
 
 
