@@ -1,7 +1,6 @@
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const faker = require("faker");
 
-let count = 0
 
 function Description() {
   this.id = count;
@@ -24,13 +23,37 @@ const csvWriter = createCsvWriter({
   ]
 });
 
-const data = [];
-for (let i= 0; i<100; i++) {
-  let description = new Description();
-  data.push(description);
-  count++;
+function populateOneMil(start) {
+  let count = start;
+  const data = [];
+  for (let i= 0; i<1000000; i++) {
+    let description = {
+      id : count,
+      name : faker.commerce.productName(),
+      price : faker.commerce.price(),
+      deliver_estimation : `${Math.floor(Math.random() * 5)} - ${Math.floor(Math.random() * 5) + 5} days`,
+      seller_name : faker.company.companyName(),
+      description : faker.commerce.product(),
+    };
+    data.push(description);
+    count++;
+  }
+  return data;
 }
 
-csvWriter  
-  .writeRecords(data)
-  .then(()=> console.log('The CSV file was written successfully'));
+Promise.resolve()
+.then(() => csvWriter.writeRecords(populateOneMil(0)))
+.then(() => csvWriter.writeRecords(populateOneMil(1000000)))
+.then(() => csvWriter.writeRecords(populateOneMil(2000000)))
+.then(() => csvWriter.writeRecords(populateOneMil(3000000)))
+.then(() => csvWriter.writeRecords(populateOneMil(4000000)))
+.then(() => csvWriter.writeRecords(populateOneMil(5000000)))
+.then(() => csvWriter.writeRecords(populateOneMil(6000000)))
+.then(() => csvWriter.writeRecords(populateOneMil(7000000)))
+.then(() => csvWriter.writeRecords(populateOneMil(8000000)))
+.then(() => csvWriter.writeRecords(populateOneMil(9000000)))
+.then(()=> console.log('The CSV file was written successfully'));
+
+// csvWriter  
+//   .writeRecords(populateOneMil(0))
+//   .then(()=> console.log('The CSV file was written successfully'));
