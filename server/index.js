@@ -38,7 +38,7 @@ app.post("/description", (req,res) => {
       console.log("Resp in server from adding description", result);
       res.send(result);
     }
-  })
+  });
 });
 
 // read/GET - read an existing item
@@ -55,14 +55,21 @@ app.put("/description/:id", (req,res) => {
       console.log("Response in server from updating an existing description", result);
       res.send(result);
     }
-  })
-})
+  });
+});
 
 //delete/DELETE - delete existing item
 app.delete("/description/:id", (req,res) => {
   let id = req.params.id;
-  res.send((`deleting description with id ${id}`))
-})
+  db.deleteDescription(id, (err,results) => {
+    if (err) {
+      console.log("Error in server deleting description",err);
+    } else {
+      console.log("Response in server from deleting description", results);
+      res.send(results);
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)

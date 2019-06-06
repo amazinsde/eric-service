@@ -66,7 +66,7 @@ module.exports.updateDescription = (id, description, callback) => {
   })
 }
 
-module.exports.deleteDescription = (id, description, callback) => {
+module.exports.deleteDescription = (id, callback) => {
   connect.db.collection('descriptions', (err,collection) => {
     if (err) {
       console.log("There is an error", err)
