@@ -30,7 +30,15 @@ app.get('/description/:id', function(req, res) {
 
 // create/POST - create new item
 app.post("/description", (req,res) => {
-  res.send("Adding description")
+  let description = req.body.description;
+  db.addDescription(description,(err,result) => {
+    if (err) {
+      console.log("Error in server adding description", err);
+    } else {
+      console.log("Resp in server from adding description", result);
+      res.send(result);
+    }
+  })
 });
 
 // read/GET - read an existing item
