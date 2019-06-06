@@ -14,7 +14,8 @@ class Description extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://description.us-east-2.elasticbeanstalk.com/description/${1001}`)
+    // `http://description.us-east-2.elasticbeanstalk.com/description/${1001}`
+    axios.get(`http://localhost:1128/${1001}`)
     .then(response => {
        return response.data;
     })
@@ -29,8 +30,9 @@ class Description extends Component {
   }
   
   componentDidUpdate(prevProps) {
+    // `http://description.us-east-2.elasticbeanstalk.com/description/${this.props.id}`
     if(prevProps.id !== this.props.id && this.props.id !== "") {
-      axios.get(`http://description.us-east-2.elasticbeanstalk.com/description/${this.props.id}`)
+      axios.get(`http://localhost:1128/${this.props.id}`)
       .then(response => {
         return response.data;
      })
