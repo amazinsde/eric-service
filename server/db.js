@@ -54,11 +54,28 @@ module.exports.updateDescription = (id, description, callback) => {
     if (err) {
       console.log('there is an error', err);
     } else {
-      collection.update({id : id}, description, (err,result) => {
+      collection.update({_id : id}, description, (err,result) => {
         if (err) {
           callback(err);
         } else {
           console.log("result from update", result);
+          callback(null, result);
+        }
+      })
+    }
+  })
+}
+
+module.exports.deleteDescription = (_id, description, callback) => {
+  connect.db.collection('descriptions', (err,collection) => {
+    if (err) {
+      console.log("There is an error", err)
+    } else {
+      collection.remove({id : id}, (err,result) => {
+        if (err) {
+          callback(err);
+        } else {
+          console.log("result from delete", result);
           callback(null, result);
         }
       })
