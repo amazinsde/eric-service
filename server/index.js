@@ -30,7 +30,7 @@ app.get('/description/:id', function(req, res) {
 
 // create/POST - create new item
 app.post("/description", (req,res) => {
-  let description = req.body.description;
+  let description = req.body;
   db.addDescription(description,(err,result) => {
     if (err) {
       console.log("Error in server adding description", err);
@@ -47,7 +47,15 @@ app.post("/description", (req,res) => {
 // update/PUT - update existing item
 app.put("/description/:id", (req,res) => {
   let id = req.params.id;
-  res.send(`modifying description with id: ${id}`);
+  let description = req.body;
+  db.updateDescription(id, description, (err,result) => {
+    if (err) {
+      console.log(`Error in server updating description`, err);
+    } else {
+      console.log("Response in server from updating an existing description", result);
+      res.send(result);
+    }
+  })
 })
 
 //delete/DELETE - delete existing item
