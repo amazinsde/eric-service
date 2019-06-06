@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
- const MONGO_USER = process.env.MONGO_USER;
- const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
- const MONGO_URL = process.env.MONGO_URL;
+//  const MONGO_USER = process.env.MONGO_USER;
+//  const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+//  const MONGO_URL = process.env.MONGO_URL;
 
 // console.log('hola', MONGO_URL);
 
 
-mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_URL}`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://localhost/sdc`);
 
 //url-mongo:cluster0-x46xc.mongodb.net/test?retryWrites=true
 //my desployment: http://description.us-east-2.elasticbeanstalk.com/

@@ -1,0 +1,1 @@
+//mongoimport --db sdc --type csv --collection amazin --file data.csv --headerline
