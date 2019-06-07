@@ -16,11 +16,11 @@ mongoose.connect(`mongodb://localhost/sdc`);
 const connect = mongoose.connection;
 
 module.exports.getOne = (id, callback) => {
-  connect.db.collection('descriptions', (err, collection) => {
+  connect.db.collection('amazin', (err, collection) => {
     if(err) {
       console.log('there is an error', err);
     } else {
-      collection.findOne({_id: id},function(err, result) {
+      collection.findOne({id: id},function(err, result) {
         if(err) {
           callback(err);
         } else {
@@ -33,7 +33,7 @@ module.exports.getOne = (id, callback) => {
 }
 
 module.exports.addDescription = (description, callback) => {
-  connect.db.collection('descriptions', (err,collection) => {
+  connect.db.collection('amazin', (err,collection) => {
     if (err) {
       console.log('there is an error', err);
     } else {
@@ -50,11 +50,11 @@ module.exports.addDescription = (description, callback) => {
 }
 
 module.exports.updateDescription = (id, description, callback) => {
-  connect.db.collection('descriptions', (err,collection) => {
+  connect.db.collection('amazin', (err,collection) => {
     if (err) {
       console.log('there is an error', err);
     } else {
-      collection.update({_id : id}, description, (err,result) => {
+      collection.update({id : Number(id)}, description, (err,result) => {
         if (err) {
           callback(err);
         } else {
@@ -67,15 +67,14 @@ module.exports.updateDescription = (id, description, callback) => {
 }
 
 module.exports.deleteDescription = (id, callback) => {
-  connect.db.collection('descriptions', (err,collection) => {
+  connect.db.collection('amazin', (err,collection) => {
     if (err) {
       console.log("There is an error", err)
     } else {
-      collection.remove({_id : id}, (err,result) => {
+      collection.remove({id : Number(id)}, (err,result) => {
         if (err) {
           callback(err);
         } else {
-          console.log("result from delete", result);
           callback(null, result);
         }
       })
