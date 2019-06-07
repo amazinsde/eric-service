@@ -8,7 +8,7 @@ require('dotenv').config();
 // console.log('hola', MONGO_URL);
 
 
-mongoose.connect(`mongodb://localhost/sdc`);
+mongoose.connect(`mongodb://localhost:27017/sdc`);
 
 //url-mongo:cluster0-x46xc.mongodb.net/test?retryWrites=true
 //my desployment: http://description.us-east-2.elasticbeanstalk.com/
