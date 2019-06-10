@@ -2,4 +2,12 @@ node_modules
 client/dist
 .env
 test.yml
+data.csv
+newrelic_agent.log
+newrelic.js
+testRoutes.js
+seedData.js
+Dockerfile
+generateData.js
+Dockerrun.aws.json
 
