@@ -15,8 +15,8 @@ class Description extends Component {
 
   componentDidMount() {
     // `http://description.us-east-2.elasticbeanstalk.com/description/${1001}`
-    let sku = Math.floor(Math.random() * 10000000);
-    axios.get(`http://localhost:1128/description/${sku}`)
+    //let sku = Math.floor(Math.random() * 10000000);
+    axios.get(`http://localhost:1128/description/${1001}`)
     .then(response => {
        return response.data;
     })
